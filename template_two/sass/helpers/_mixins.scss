@@ -1,0 +1,90 @@
+@mixin reset{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+@mixin centering{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@mixin circle($num){
+    border-radius: 50%;
+    width: $num;
+    height: $num;
+}
+@mixin position($num1,$dir)
+{
+    @if $dir == top{
+        position: absolute;
+        top:$num1;
+        transform: translateY(-50%);
+    }
+    @else if $dir == left{
+        position: absolute;
+        left:$num1;
+        transform: translateX(-50%);
+    }
+    @else if $dir == right{
+        position: absolute;
+        right:$num1;
+        transform: translateX(50%);
+    }
+    @else if $dir == bottom{
+        position: absolute;
+        bottom:$num1;
+        transform: translateX(50%);
+    }
+}
+
+@mixin kayf($anim_name){
+    @content;
+}
+@mixin overlay($color,$opacity){
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color,$opacity);
+}
+@mixin media_points($point){
+
+    @if($point == "mobiale")
+    {
+        @media (max-width: 768px)
+        {
+            @content;
+        }
+    }
+    @else if ($point == small)
+    {
+        @media (min-width: 768px) and (max-width: 991px)
+        {
+            @content;
+        }
+    }
+    @else if ($point == medium)
+    {
+        @media (min-width: 992px) and (max-width: 1199px)
+        {
+            @content;
+        }
+    }
+    @else if ($point == large)
+    {
+        @media (min-width: 1200px)
+        {
+            @content;
+        }
+    }
+}
+@mixin x-keyframes ($name){
+    @-webkit-keyframes #{$name}{
+        @content;
+    }
+    @keyframes #{$name} {
+        @content;
+    }
+}
